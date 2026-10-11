@@ -1,0 +1,82 @@
+class GoodMorning extends Thread {
+    public void run() {
+        try {
+            while (true) {
+                System.out.println("Good Morning");
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+}
+
+class Hello extends Thread {
+    public void run() {
+        try {
+            while (true) {
+                System.out.println("Hello");
+                Thread.sleep(2000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+}
+
+class Welcome extends Thread {
+    public void run() {
+        try {
+            while (true) {
+                System.out.println("Welcome");
+                Thread.sleep(3000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        GoodMorning t1 = new GoodMorning();
+        Hello t2 = new Hello();
+        Welcome t3 = new Welcome();
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+class MyThread implements Runnable {
+    String message;
+    int time;
+
+    MyThread(String message, int time) {
+        this.message = message;
+        this.time = time;
+    }
+
+    public void run() {
+        try {
+            while (true) {
+                System.out.println(message);
+                Thread.sleep(time);
+            }
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MyThread("Good Morning", 1000));
+        Thread t2 = new Thread(new MyThread("Hello", 2000));
+        Thread t3 = new Thread(new MyThread("Welcome", 3000));
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
